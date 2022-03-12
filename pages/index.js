@@ -4,12 +4,15 @@ import React from "react";
 
 import Link from "next/link";
 
+import Loader from "../components/Loader";
+
 export default function Home() {
   return (
     <div>
       <Link href={{ pathname: "/[username]", query: { username: "john123" } }}>
         <a>John&apos;s profile</a>
       </Link>
+      <Loader show={false} />
     </div>
   );
 }
