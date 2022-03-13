@@ -1,9 +1,12 @@
 import React from "react";
 import Link from "next/link";
+import { useContext } from "react";
+import { UserContext } from "../lib/context";
 
 export default function Navbar() {
-  const user = null;
-  const username = null;
+  // Get the values from the Context by using the useContext hook
+  // Any components that depend on the Context, will re-render any time the Context value change => Anytime a user will sign in or sign out the UI will re-render since the Context value was changed
+  const { user, username } = useContext(UserContext);
 
   return (
     <nav className="navbar">
