@@ -10,7 +10,6 @@ import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }) {
   const userData = useUserData();
-  console.log(userData);
 
   return (
     // By wrapping the app with the Provider we will give all components access to the Context values
