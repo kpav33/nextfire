@@ -6,6 +6,7 @@ import React, { useState } from "react";
 
 import Link from "next/link";
 import Loader from "../components/Loader";
+import Metatags from "../components/Metatags";
 import toast from "react-hot-toast";
 import PostFeed from "../components/PostFeed";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
@@ -46,6 +47,7 @@ export default function Home(props) {
 
   return (
     <main>
+      <Metatags title="Root page" />
       {/* <Link
         prefetch={false}
         href={{ pathname: "/[username]", query: { username: "john123" } }}
