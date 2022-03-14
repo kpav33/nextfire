@@ -3,10 +3,28 @@ import React from "react";
 // We can nest a dynamic route within a dynamic route
 // This page is statically generated, BUT regenerated after new requests come in at an interval of 5000ms. If a prerendered page does not exist, will fallback to regular SSR.
 
+import styles from "../../styles/Post.module.css";
+import { useDocumentData } from "react-firebase-hooks/firestore";
+import PostContent from "../../components/PostContent";
+import { firestore, getUserWithUsername, postToJSON } from "../../lib/firebase";
+
 export default function PostPage(props) {
+  const postRef = firestore.doc(props.path);
+  const [realtimePost] = useDocumentData(postRef);
+
+  const post = realtimePost || props.post;
+
   return (
     <main className={styles.container}>
-      <p>OK</p>
+      <section>
+        <PostContent post={post} />
+      </section>
+
+      <aside className="card">
+        <p>
+          <strong>{post.heartCount || 0} 🤍</strong>
+        </p>
+      </aside>
     </main>
   );
 }
