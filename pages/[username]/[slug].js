@@ -4,6 +4,10 @@ import React from "react";
 // This page is statically generated, BUT regenerated after new requests come in at an interval of 5000ms. If a prerendered page does not exist, will fallback to regular SSR.
 
 import styles from "../../styles/Post.module.css";
+import HeartButton from "../../components/HeartButton";
+import AuthCheck from "../../components/AuthCheck";
+import Link from "next/link";
+
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import PostContent from "../../components/PostContent";
 import { firestore, getUserWithUsername, postToJSON } from "../../lib/firebase";
@@ -24,6 +28,16 @@ export default function PostPage(props) {
         <p>
           <strong>{post.heartCount || 0} 🤍</strong>
         </p>
+
+        <AuthCheck
+          fallback={
+            <Link href="/enter" passHref>
+              <button>💗 Sign Up</button>
+            </Link>
+          }
+        >
+          <HeartButton postRef={postRef} />
+        </AuthCheck>
       </aside>
     </main>
   );
