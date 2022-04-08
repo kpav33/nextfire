@@ -1,3 +1,4 @@
+import React from "react";
 import { firestore, auth, increment } from "../lib/firebase";
 import { useDocument } from "react-firebase-hooks/firestore";
 

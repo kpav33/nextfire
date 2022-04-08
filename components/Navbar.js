@@ -1,12 +1,21 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import { UserContext } from "../lib/context";
+import { auth } from "../lib/firebase";
 
 export default function Navbar() {
   // Get the values from the Context by using the useContext hook
   // Any components that depend on the Context, will re-render any time the Context value change => Anytime a user will sign in or sign out the UI will re-render since the Context value was changed
   const { user, username } = useContext(UserContext);
+
+  const router = useRouter();
+
+  const signOut = () => {
+    auth.signOut();
+    router.reload();
+  };
 
   return (
     <nav className="navbar">
@@ -20,6 +29,9 @@ export default function Navbar() {
         {/* user is signed-in and has username */}
         {username && (
           <>
+            <li className="push-left">
+              <button onClick={signOut}>Sign Out</button>
+            </li>
             <li className="push-left">
               <Link href="/admin" passHref>
                 <button className="btn-blue">Write Posts</button>
