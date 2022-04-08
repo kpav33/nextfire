@@ -2,6 +2,7 @@ import React from "react";
 import { getUserWithUsername, postToJSON } from "../../lib/firebase";
 import UserProfile from "../../components/UserProfile";
 import PostFeed from "../../components/PostFeed";
+import Metatags from "../../components/Metatags";
 
 // You can also apply the square brackets that mark a dynamic routes to directories not just to files
 // In this case this means that any route that we navigate to beyond the route URL will render this component
@@ -10,6 +11,10 @@ import PostFeed from "../../components/PostFeed";
 export default function UserProfilePage({ user, posts }) {
   return (
     <main>
+      <Metatags
+        title={user.username}
+        description={`${user.username}'s public profile`}
+      />
       <UserProfile user={user} />
       <PostFeed posts={posts} />
     </main>
