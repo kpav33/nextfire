@@ -1,5 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import { UserContext } from "../lib/context";
+import Metatags from "../components/Metatags";
 
 // Check the component tree with React Dev Tools and you can see that Next automatically adds a bunch of components to the component tree that we don't directly see in our code
 
@@ -14,6 +16,7 @@ export default function EnterPage() {
   // 3. user signed in, has username <SignOutButton />
   return (
     <main>
+      <Metatags title="Enter" description="Sign up for this amazing app!" />
       {user ? (
         !username ? (
           <UsernameForm />
@@ -38,7 +41,8 @@ function SignInButton() {
   return (
     <>
       <button className="btn-google" onClick={signInWithGoogle}>
-        <img src={"/google.png"} width="30px" /> Sign in with Google
+        <img src={"/google.png"} width="30px" alt="Sign In" /> Sign in with
+        Google
       </button>
       {/* <button onClick={() => auth.signInAnonymously()}>
         Sign in Anonymously
