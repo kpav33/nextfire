@@ -6,11 +6,14 @@ import React from "react";
 import styles from "../../styles/Post.module.css";
 import HeartButton from "../../components/HeartButton";
 import AuthCheck from "../../components/AuthCheck";
-import Link from "next/link";
-
-import { useDocumentData } from "react-firebase-hooks/firestore";
 import PostContent from "../../components/PostContent";
+import Metatags from "../../components/Metatags";
+import { UserContext } from "../../lib/context";
 import { firestore, getUserWithUsername, postToJSON } from "../../lib/firebase";
+
+import Link from "next/link";
+import { useDocumentData } from "react-firebase-hooks/firestore";
+import { useContext } from "react";
 
 export default function PostPage(props) {
   const postRef = firestore.doc(props.path);
@@ -18,8 +21,12 @@ export default function PostPage(props) {
 
   const post = realtimePost || props.post;
 
+  const { user: currentUser } = useContext(UserContext);
+
   return (
     <main className={styles.container}>
+      <Metatags title={post.title} description={post.title} />
+
       <section>
         <PostContent post={post} />
       </section>
@@ -38,6 +45,12 @@ export default function PostPage(props) {
         >
           <HeartButton postRef={postRef} />
         </AuthCheck>
+
+        {currentUser?.uid === post.uid && (
+          <Link href={`/admin/${post.slug}`} passHref>
+            <button className="btn-blue">Edit Post</button>
+          </Link>
+        )}
       </aside>
     </main>
   );

@@ -1,12 +1,17 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-import { auth, firestore, googleAuthProvider } from "../lib/firebase";
+import { auth } from "../lib/firebase";
 
 // UI component for user profile
 export default function UserProfile({ user }) {
   return (
     <div className="box-center">
-      <img src={user.photoURL || "/hacker.png"} className="card-img-center" />
+      <img
+        src={user.photoURL || "/hacker.png"}
+        className="card-img-center"
+        alt="user"
+      />
       <p>
         <i>@{user.username}</i>
       </p>

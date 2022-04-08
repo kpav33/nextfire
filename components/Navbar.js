@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -39,7 +40,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link href={`/${username}`} passHref>
-                <img src={user?.photoURL} />
+                <img src={user?.photoURL} alt="user image" />
               </Link>
             </li>
           </>
