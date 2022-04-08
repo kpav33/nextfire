@@ -1,0 +1,12 @@
+// Configure module aliases, so that your import statements can be more concise
+// https://nextjs.org/docs/advanced-features/module-path-aliases
+{
+    "compilerOptions": {
+      "baseUrl": "./",
+      "paths": {
+        "@components/*": ["components/*"],
+        "@styles/*": ["styles/*"],
+        "@lib/*": ["lib/*"],
+      }
+    }
+}
